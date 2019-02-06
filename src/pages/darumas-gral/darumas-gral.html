@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle >
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mis Darumas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="colorFondo" padding-horizontal>
+  <ion-row class="paddingVerticalM centrarG"  align-items-end>
+    <p ion-text color="rosa" padding-left no-margin>
+        <b>Bienvenido: </b><span ion-text color="dark">Usuario</span>
+    </p>
+  </ion-row>
+  <ion-row justify-content-center padding-horizontal >
+    <div ion-col col-12 col-sm-6>
+        <button color="verde" ion-button type="button"
+          block full icon-left (click)="goToScanQr()" class="sombra">
+            <ion-icon name="qr-scanner"></ion-icon>
+            Agregar Daruma
+        </button>
+      </div>
+  </ion-row>
+  <ion-row class="paddingVerticalM centrarG"  align-items-end>
+    <div ion-col col-6>
+      <p ion-text color="rosa" padding-left no-margin>
+          <b>Elige un Daruma:</b>
+      </p>
+    </div>
+  </ion-row>
+  <!-- Lista de darumas -->
+  <ion-list>
+    <ion-item (click)="goToDetalle(daruma.qrcode, toki)" *ngFor="let daruma of darumas">
+      <ion-thumbnail item-start>
+        <img src="../../assets/imgs/DarumaUnOjo.png ">
+      </ion-thumbnail>
+      <h2>{{daruma.descripcion}} 1</h2>
+      <p>{{daruma.fechaInicio }} • {{daruma.estado}}</p>
+      <button ion-button clear item-end>Ver</button>
+    </ion-item>
+
+
+  </ion-list>
+
+</ion-content>
+
+<!-- Footer -->
+<ion-footer>
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <div ion-col col-12 text-center no-padding>
+        <p>Powered by <strong>Devstar Novatech.</strong></p>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

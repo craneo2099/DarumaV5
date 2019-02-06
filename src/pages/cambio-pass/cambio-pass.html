@@ -1,0 +1,77 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cambiar Contrase&ntilde;a</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="colorFondo" padding-vertical>
+  <form ion-grid fixed no-padding>
+    <ion-row justify-content-center padding-bottom>
+      <img class="imgRed2 noMostrarG"
+        src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+      <img class="imgRed noMostrarChico"
+        src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+    </ion-row>
+
+    <ion-row class="paddingBottomM centrarG">
+      <p ion-text color="rosa" padding-left no-margin>
+          <b>Completa los campos:</b>
+      </p>
+    </ion-row>
+
+    <ion-row justify-content-center>
+      <ion-list ion-col col-12 col-sm-6 no-margin no-padding>
+        <ion-item>
+          <ion-label floating color="primary">
+            <ion-icon name="key"></ion-icon>
+            Contrase&ntilde;a
+            <span ion-text color="gris">(Actual)</span>
+          </ion-label>
+          <ion-input type="password" name="contraseñaA" clearInput="true"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating color="primary">
+            <ion-icon name="key"></ion-icon>
+            Nueva Contrase&ntilde;a
+          </ion-label>
+          <ion-input type="password" name="contraseñaN1" clearInput="true"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating color="primary">
+              <ion-icon name="key"></ion-icon>
+              Nueva Contrase&ntilde;a
+              <span ion-text color="gris">(Repite)</span>
+            </ion-label>
+            <ion-input type="password" name="contraseñaN2" clearInput="true"></ion-input>
+          </ion-item>
+
+      </ion-list>
+    </ion-row>
+
+    <ion-row justify-content-center padding-horizontal padding-top>
+      <div ion-col col-12  col-sm-6 class="colorFondo">
+        <button type="submit" color="verde" ion-button
+          block full icon-left (click)="cambiarPass()" class="sombra">
+            <ion-icon name="create"></ion-icon>
+            Cambiar
+        </button>
+      </div>
+    </ion-row>
+  </form>
+</ion-content>
+<!-- Footer -->
+<!-- <ion-footer>
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <div ion-col col-12 text-center no-padding>
+        <p>Powered by <strong>Devstar Novatech.</strong></p>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-footer> -->
+
+

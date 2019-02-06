@@ -4,7 +4,9 @@
 // Font path is used to include ionicons,
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
-
+$font-family-md-base: "fuenteMenu";
+$font-family-ios-base: "fuenteMenu";
+$font-family-wp-base: "fuenteMenu";
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
@@ -36,12 +38,24 @@ $app-direction: ltr;
 $colors: (
   primary:    #488aff,
   secondary:  #32db64,
-  danger:     #f53d3d,
+  danger:     #c50303,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  fondo:      #D7ECCE,
+  rosa:       #e33d6f,
+  rosa1:      #E43C6F,
+  rosa2:      #ff0066,
+  rosa3:      #ff005e,
+  verde:      #3DBD66,
+  azul:       #0489C2,
+  gris:       #cecece,
+  azulFace:   #3b5998,
+  vioInsta:   #bc2a8d
 );
 
-
+ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .nav-decor {
+  background: transparent none !important;
+}
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

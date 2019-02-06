@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Agregar Daruma</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content  >
+<!-- <div>
+  <button ion-button (click)="scan()" >Activar Scanner</button>
+  <div>
+
+  </div>
+</div> -->
+
+<div class="colorFondo2">
+  <ion-row class="fondoScannerAltura" ion-col ion-col-8 align-items-center
+    justify-content-center>
+    <div  class="cuadro">
+
+    </div>
+  </ion-row>
+</div>
+
+<ion-fab bottom right margin>
+  <button ion-fab><ion-icon name="md-options"></ion-icon></button>
+  <ion-fab-list side="top">
+    <button (click)="toggleFlashLight()" ion-fab><ion-icon name="flash">
+
+    </ion-icon></button>
+    <button ion-fab (click)="toggleCamera()"><ion-icon name="reverse-camera"></ion-icon> </button>
+
+  </ion-fab-list>
+</ion-fab>
+</ion-content>
+
+<!-- Footer -->
+<ion-footer>
+<ion-grid no-padding>
+  <ion-row no-padding>
+    <div ion-col col-12 text-center no-padding>
+      <p>Powered by <strong>Devstar Novatech.</strong></p>
+    </div>
+  </ion-row>
+</ion-grid>
+</ion-footer>

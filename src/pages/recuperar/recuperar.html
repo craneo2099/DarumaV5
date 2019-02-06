@@ -1,0 +1,72 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Recuperar Contrase&ntilde;a</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="colorFondo" padding-vertical>
+  <form ion-grid fixed no-padding [formGroup]="recuperarForm"
+  (ngSubmit)="enviarMail()">
+    <ion-row justify-content-center padding-bottom>
+      <img class="imgRed2 noMostrarG"
+        src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+      <img class="imgRed noMostrarChico"
+        src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+    </ion-row>
+
+    <ion-row class="paddingBottomM centrarG">
+      <p ion-text color="rosa" padding-left no-margin>
+          <b>Escribe tu correo electr&oacute;nico:</b>
+      </p>
+    </ion-row>
+
+    <ion-row justify-content-center>
+      <ion-list ion-col col-12 col-sm-6 no-margin no-padding>
+        <ion-item>
+          <ion-label floating color="primary">
+            <ion-icon name="person"></ion-icon>
+            Correo
+            <span ion-text color="gris">(e-mail)</span>
+          </ion-label>
+          <ion-input type="email" clearInput="true"
+            formControlName="correo" required>
+          </ion-input>
+        </ion-item>
+        <!-- validacion -->
+        <ion-item *ngIf="recuperarForm.get('correo').errors && recuperarForm.get('correo').dirty">
+          <p color="danger" ion-text *ngIf="recuperarForm.get('correo').hasError('required')">
+            Campo requerido
+          </p>
+          <p color="danger" ion-text *ngIf="recuperarForm.get('correo').hasError('pattern')">
+            Escribe tu e-mail (nombre@dominio.com)
+          </p>
+        </ion-item>
+      </ion-list>
+    </ion-row>
+    <!-- boton -->
+    <ion-row justify-content-center padding-horizontal padding-top>
+      <div ion-col col-12  col-sm-6 class="colorFondo">
+        <button type="submit" color="verde" ion-button
+          block full icon-left class="sombra">
+            <ion-icon name="mail"></ion-icon>
+            Enviar Correo
+        </button>
+      </div>
+    </ion-row>
+
+
+  </form>
+</ion-content>
+<!-- footer -->
+<ion-footer>
+    <ion-grid no-padding>
+      <ion-row no-padding>
+        <div ion-col col-12 text-center no-padding>
+          <p>Powered by <strong>Devstar Novatech.</strong></p>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>

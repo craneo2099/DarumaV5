@@ -1,0 +1,117 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Registrate</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="colorFondo" >
+  <form ion-grid fixed no-padding [formGroup]="registroForm"
+  (ngSubmit)="enviarRegistro()">
+    <ion-row justify-content-center class="paddingVerticalM">
+      <img class="imgRed2 noMostrarG"
+        src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+      <img class="imgRed noMostrarChico"
+        src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+    </ion-row>
+    <ion-row class="paddingBottomM">
+      <p ion-text color="rosa" padding-left no-margin>
+          <b>Completa los campos:</b>
+      </p>
+    </ion-row>
+
+    <ion-row >
+      <ion-list ion-row no-margin no-padding>
+        <ion-item ion-col col-12 >
+          <ion-label floating color="primary">
+            <ion-icon name="person"></ion-icon>
+            Correo
+            <span ion-text color="gris">(e-mail)</span>
+          </ion-label>
+          <ion-input type="email" name="correo" clearInput="true"
+          formControlName="correo" required>
+          </ion-input>
+        </ion-item>
+        <!-- validacion Correo -->
+        <ion-item *ngIf="registroForm.get('correo').errors && registroForm.get('correo').dirty">
+          <p color="danger" ion-text *ngIf="registroForm.get('correo').hasError('required')">
+            Campo requerido
+          </p>
+          <p color="danger" ion-text *ngIf="registroForm.get('correo').hasError('pattern')">
+            Escribe tu e-mail (nombre@dominio.com)
+          </p>
+        </ion-item>
+
+        <ion-item class="inputc" ion-col col-12 col-sm-6>
+          <ion-label floating color="primary">
+            <ion-icon name="key"></ion-icon>
+            Contrase&ntilde;a
+            <span ion-text color="gris">(password)</span>
+          </ion-label>
+          <ion-input type="password" name="password"
+          clearInput="true" formControlName="password" required>
+          </ion-input>
+        </ion-item>
+        <ion-item ion-col col-12 col-sm-6>
+          <ion-label floating color="primary">
+            <ion-icon name="key"></ion-icon>
+            Contrase&ntilde;a
+            <span ion-text color="gris">(Repite)</span>
+          </ion-label>
+          <ion-input type="password" name="passwordC"
+          clearInput="true" formControlName="passwordC" required>
+          </ion-input>
+        </ion-item>
+        <ion-item ion-col col-12>
+          <ion-label color="primary">
+            No soy un robot
+          </ion-label>
+          <ion-checkbox required></ion-checkbox>
+
+        </ion-item>
+      </ion-list>
+    </ion-row>
+    <ion-row justify-content-center>
+      <small >
+        <p no-margin margin-top>Al dar click en registrarse acepta nuestros</p>
+      </small>
+    </ion-row>
+    <ion-row justify-content-center >
+      <small >
+        <p no-margin><a href="">T&eacute;rminos y Condiciones</a></p>
+      </small>
+      <!-- <button ion-button small clear no-padding color="primary" (click)="goToRegistro()">
+          <u>T&eacute;rminos y Condiciones</u>
+      </button> -->
+    </ion-row>
+
+    <!-- boton -->
+    <ion-row justify-content-center padding-horizontal >
+      <div ion-col col-12 col-sm-6>
+          <button type="submit" ion-button block full icon-left
+            class="sombra">
+              <ion-icon name="send"></ion-icon>
+              Registrarse
+          </button>
+        </div>
+    </ion-row>
+
+
+
+
+	</form>
+
+</ion-content>
+<!-- Footer -->
+<!-- <ion-footer>
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <div ion-col col-12 text-center no-padding>
+        <p>Powered by <strong>Devstar Novatech.</strong></p>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-footer> -->

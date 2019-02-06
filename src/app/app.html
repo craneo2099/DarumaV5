@@ -1,1 +1,30 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu  [content]="NAV">
+
+  <ion-header>
+    <div class="colorFondo" padding>
+        <img src="/assets/imgs/logoKoiHR.png" alt="logoKoiHR">
+    </div>
+    <ion-toolbar>
+      <ion-title>
+
+        <span ion-text color = 'verde'>    M</span>
+        <span ion-text color = 'azul'>     e</span>
+        <span ion-text color = 'rosa2'>    n</span>
+        <span ion-text color = 'verde'>&uacute;</span>
+
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="outer-content">
+
+
+    <ion-list >
+      <button ion-item *ngFor="let page of pages"
+        (click)="goToPage(page.componente)" menuClose>
+        <ion-icon item-left color="{{page.color}}" name="{{page.icon}}"></ion-icon>
+       <ion-label color="{{page.color}}">{{ page.titulo }}</ion-label>
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav #NAV [root]="rootPage"></ion-nav>

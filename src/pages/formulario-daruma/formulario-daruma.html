@@ -1,0 +1,84 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Prop&oacute;sito</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="colorFondo" padding-vertical>
+  <form ion-grid fixed no-padding [formGroup]="logdarumaForm"
+  (ngSubmit)="logdaruForm()">
+  <ion-row justify-content-center padding-vertical>
+    <img class="imgRed2 noMostrarG"
+      src="../../assets/imgs/Koi_DarumaGsinOjosSF.png" alt="Koi_DarumaGsinOjosSF">
+    <img class="noMostrarChico"
+      src="../../assets/imgs/Koi_DarumaGsinOjosSF.png" alt="Koi_DarumaGsinOjosSF">
+  </ion-row>
+
+  <!-- Nombre Daruma -->
+  <ion-row justify-content-center>
+    <ion-list ion-col col-12 col-sm-6 no-margin no-padding>
+      <ion-item>
+        <ion-label floating color="verde">
+         <ion-icon name="add-circle-outline"></ion-icon>
+          Dale nombre a tu Daruma
+        </ion-label>
+        <ion-input type="text" formControlName="nombreDaruma" clearInput="true" aria-required="true"></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <!-- proposito -->
+  <ion-row justify-content-center>
+    <ion-list ion-col col-12 col-sm-6 no-margin no-padding>
+      <ion-item>
+        <ion-label floating color="verde">
+         <ion-icon name="add-circle-outline"></ion-icon>
+          Escribe tu prop&oacute;sito:
+        </ion-label>
+        <ion-input type="text" formControlName="proposito" clearInput="true" aria-required="true"></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+
+<!-- --- -->
+<ion-row justify-content-center padding-horizontal >
+  <div ion-col col-12  col-sm-6 class="colorFondo" >
+    <ion-row>
+      <div ion-col col-6 justify-content-center>
+        <h6 ion-text color="azul">
+          <b>Fecha Inicio:</b>
+        </h6>
+      </div>
+      <div ion-col col-6 justify-content-center>
+        <h6>{{fecha | date: 'dd/MM/yyyy'}}</h6>
+      </div>
+    </ion-row>
+  </div>
+</ion-row>
+<!-- boton -->
+<ion-row justify-content-center padding-horizontal>
+  <div ion-col col-12  col-sm-6 class="colorFondo">
+    <button type="submit" color="rosa2" ion-button
+      block full icon-left class="sombra">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        Crear Daruma
+    </button>
+  </div>
+</ion-row>
+</form>
+</ion-content>
+
+<!-- footer -->
+<!-- <ion-footer>
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <div ion-col col-12 text-center no-padding>
+        <p>Powered by <strong>Devstar Novatech.</strong></p>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-footer> -->

@@ -1,0 +1,107 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Inicio de Sesi&oacute;n</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="colorFondo " padding-vertical>
+  <form ion-grid fixed no-padding [formGroup]="loginForm"
+    (ngSubmit)="logForm()">
+    <ion-row justify-content-center padding-bottom>
+        <!-- <div class="imgRed"> -->
+          <img class="imgRed noMostrarG"
+            src="../../assets/imgs/LogoKoiCT.png" alt="logoKoiCT">
+          <img class="imgRed noMostrarChico"
+            src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+        <!-- </div> -->
+    </ion-row>
+
+    <ion-row justify-content-center>
+      <ion-list ion-col col-12  col-sm-6 no-margin no-padding>
+        <ion-item>
+          <ion-label floating color="primary">
+            <ion-icon name="person"></ion-icon>
+            Usuario
+            <span ion-text color="gris">(e-mail)</span>
+          </ion-label>
+          <ion-input type="email" formControlName="email"
+            clearInput="true" required>
+          </ion-input>
+        </ion-item>
+        <!-- Validaciones -->
+        <ion-item *ngIf="loginForm.get('email').errors && loginForm.get('email').dirty">
+          <p color="danger" ion-text *ngIf="loginForm.get('email').hasError('required')">
+            Campo requerido
+          </p>
+          <p color="danger" ion-text *ngIf="loginForm.get('email').hasError('pattern')">
+            Escribe tu e-mail (nombre@dominio.com)
+          </p>
+        </ion-item>
+        <!-- input -->
+        <ion-item>
+          <ion-label floating color="primary">
+            <ion-icon name="key"></ion-icon>
+              Password
+            </ion-label>
+          <ion-input type="password" formControlName="password"
+            clearInput="true" required>
+          </ion-input>
+        </ion-item>
+        <!-- Validaciones -->
+        <ion-item *ngIf="loginForm.get('password').errors && loginForm.get('password').dirty ">
+          <p color="danger" ion-text *ngIf="loginForm.get('password').hasError('required')">
+            Campo requerido
+          </p>
+          <!-- <p color="danger" ion-text *ngIf="loginForm.get('password').hasError('minLength')">
+            Yeahhh
+          </p> -->
+          <!-- <p color="danger" ion-text *ngIf="loginForm.get('password').hasError('minlength') ">
+            Minimo 4 caracteres
+          </p> -->
+        </ion-item>
+      </ion-list>
+    </ion-row>
+    <!-- botones [disabled]="!loginForm.valid"-->
+    <ion-row justify-content-center padding-horizontal padding-top>
+      <div ion-col col-12  col-sm-6 class="colorFondo">
+        <button id="emailBtn" type="submit" color="verdeLogo" ion-button
+          block full icon-left class="sombra" >
+            <ion-icon name="send"></ion-icon>
+            Iniciar Sesi&oacute;n
+        </button>
+      </div>
+    </ion-row>
+
+    <ion-row justify-content-center padding-horizontal class="padingTopM">
+      <div ion-col col-12 col-sm-6>
+        <button color="rosa2" ion-button type="button"
+          block full icon-left (click)="goToRegistro()" class="sombra">
+            <ion-icon name="create"></ion-icon>
+            Reg&iacute;strate
+        </button>
+      </div>
+    </ion-row>
+
+    <ion-row justify-content-center padding-vertical>
+        <button ion-button small clear color="primary" type="button"
+        (click)="goToRecuperar()">
+          <u>¿Olvidaste la contrase&ntilde;a?</u>
+        </button>
+    </ion-row>
+
+  </form>
+</ion-content>
+<!-- footer -->
+<!-- <ion-footer class="asd">
+  <ion-grid no-padding>
+    <ion-row no-padding>
+      <div ion-col col-12 text-center no-padding>
+        <p>Powered by <strong>Devstar Novatech.</strong></p>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-footer> -->

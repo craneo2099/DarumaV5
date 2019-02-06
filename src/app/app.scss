@@ -1,16 +1,104 @@
-// http://ionicframework.com/docs/theming/
+/* http://ionicframework.com/docs/theming/*/
 
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+/* App Global Sass*/
+/* --------------------------------------------------*/
+/* Put style rules here that you want to apply globally. These*/
+/* styles are for the entire app and not just one component.*/
+/* Additionally, this file can be also used as an entry point*/
+/* to import other Sass files to be included in the output CSS.*/
+/**/
+/* Shared Sass variables, which can be used to adjust Ionic's*/
+/* default Sass variables, belong in "theme/variables.scss".*/
+/**/
+/* To declare rules for a specific mode, create a child rule*/
+/* for the .md, .ios, or .wp mode classes. The mode class is*/
+/* automatically applied to the <body> element in the app.*/
+/* --------------------------------------------------*/
+
+/*Titulo completo en IOS*/
+/* .toolbar-ios ion-title{*/
+/*   width: auto;*/
+/* }*/
+@font-face {
+  font-family: fuenteMenu;
+  src: url(../assets/fonts/poppins/Poppins-Regular.ttf);
+
+}
+
+.colorFondo{
+  background-color: map-get($colors, fondo);
+}
+
+
+
+.imgRed {
+  margin:  auto;
+  width: 40%;
+  height: 40%;
+}
+
+.imgRed2 {
+  margin:  auto;
+  width: 70%;
+  height: 70%;
+}
+
+/*Cuando la pantalla es mas de 576 submit*/
+@media only screen and (min-width: 576px) {
+  .noMostrarG {
+      display: none;
+  }
+  .centrarG{
+    margin:  auto;
+  }
+}
+
+/*Cuando la pantalla es menos de 576px*/
+@media only screen and (max-width: 576px) {
+  .noMostrarChico{
+    display: none;
+  }
+}
+
+.sombra{
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+}
+
+.paddingM {
+  padding-top: 8px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+}
+
+.padingTopM {
+  padding-top: 8px;
+}
+
+.paddingRightM {
+  padding-right: 8px;
+}
+
+.paddingLeftM {
+  padding-left: 8px;
+}
+
+.paddingBottomM {
+  padding-bottom: 8px;
+}
+
+.paddingHorizontalM {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.paddingVerticalM {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+body.keyboard-is-open .hideElementOnKeyboardShown{
+  display: none;
+}
