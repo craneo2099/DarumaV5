@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http'
 
 import { IonicStorageModule } from '@ionic/storage';
+import { PasswordValidatorProvider } from '../providers/password-validator/password-validator';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { IonicStorageModule } from '@ionic/storage';
     Camera,
     QRScanner,
     DarumaServiceProvider,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PasswordValidatorProvider
 
   ]
 })

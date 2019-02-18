@@ -127,6 +127,24 @@ export class DarumaServiceProvider {
 
   }
 
+  obtenerCaptcha(){
+    return this.http.get(this.darumaUrl + "loginApp/getCaptcha")
+  }
+
+  doRegistrarUsuario(data, token){
+    console.log("data", data);
+    console.log("token", token);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Authorization": token
+      })
+    };
+
+    return this.http.post(this.darumaUrl + "registro/alta", data
+    ,httpOptions)
+  }
+
   isAsignaDaruma(qrCode: string, token: string){
     console.log("qrText", qrCode);
     console.log("qrToken", token);

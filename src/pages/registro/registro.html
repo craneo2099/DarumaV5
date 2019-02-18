@@ -25,6 +25,7 @@
 
     <ion-row >
       <ion-list ion-row no-margin no-padding>
+        <!-- correo -->
         <ion-item ion-col col-12 >
           <ion-label floating color="primary">
             <ion-icon name="person"></ion-icon>
@@ -44,36 +45,70 @@
             Escribe tu e-mail (nombre@dominio.com)
           </p>
         </ion-item>
+        <!-- Grupo Pass -->
+        <div formGroupName="matching_passwords" no-padding ion-col col-12>
+          <!-- pass -->
+          <ion-item class="inputc" ion-col col-12 >
+            <ion-label floating color="primary">
+              <ion-icon name="key"></ion-icon>
+              Contrase&ntilde;a
+              <span ion-text color="gris">(password)</span>
+            </ion-label>
+            <ion-input type="password" name="password"
+            clearInput="true" formControlName="password" required>
+            </ion-input>
+          </ion-item>
+          <!-- Validacion Pass -->
+          <ng-container *ngFor="let validation of validation_messages.password" ion-col col-12>
+            <ion-item  *ngIf="registroForm.get('matching_passwords').get('password').hasError(validation.type) && (registroForm.get('matching_passwords').get('password').dirty || registroForm.get('matching_passwords').get('password').touched)">
+              <p color="danger" ion-text>{{ validation.message }}</p>
+            </ion-item>
+          </ng-container>
 
-        <ion-item class="inputc" ion-col col-12 col-sm-6>
-          <ion-label floating color="primary">
-            <ion-icon name="key"></ion-icon>
-            Contrase&ntilde;a
-            <span ion-text color="gris">(password)</span>
-          </ion-label>
-          <ion-input type="password" name="password"
-          clearInput="true" formControlName="password" required>
-          </ion-input>
-        </ion-item>
-        <ion-item ion-col col-12 col-sm-6>
-          <ion-label floating color="primary">
-            <ion-icon name="key"></ion-icon>
-            Contrase&ntilde;a
-            <span ion-text color="gris">(Repite)</span>
-          </ion-label>
-          <ion-input type="password" name="passwordC"
-          clearInput="true" formControlName="passwordC" required>
-          </ion-input>
-        </ion-item>
-        <ion-item ion-col col-12>
-          <ion-label color="primary">
-            No soy un robot
-          </ion-label>
-          <ion-checkbox required></ion-checkbox>
+          <!-- passC -->
+          <ion-item ion-col col-12 >
+            <ion-label floating color="primary">
+              <ion-icon name="key"></ion-icon>
+              Contrase&ntilde;a
+              <span ion-text color="gris">(confirma)</span>
+            </ion-label>
+            <ion-input type="password" name="passwordC"
+            clearInput="true" formControlName="passwordC" required>
+            </ion-input>
+          </ion-item>
+          <!-- Validacion PassC -->
+            <ng-container *ngFor="let validation of validation_messages.passwordC" ion-col col-12>
+              <ion-item  *ngIf="registroForm.get('matching_passwords').get('passwordC').hasError(validation.type) && (registroForm.get('matching_passwords').get('passwordC').dirty || registroForm.get('matching_passwords').get('passwordC').touched)">
+                <p color="danger" ion-text>{{ validation.message }}</p>
+              </ion-item>
+            </ng-container>
 
+            <ng-container *ngFor="let validation of validation_messages.matching_passwords" ion-col col-12 >
+              <ion-item  *ngIf="registroForm.get('matching_passwords').hasError(validation.type) && (registroForm.get('matching_passwords').get('passwordC').dirty || registroForm.get('matching_passwords').get('passwordC').touched)">
+                <p color="danger" ion-text>{{ validation.message }}</p>
+              </ion-item>
+            </ng-container>
+        </div>
+        <!-- captcha -->
+        <ion-item ion-col col-6 >
+          <!-- <ion-img src="{{ imgUrl }}" ></ion-img> -->
+          <img class="" src="{{ imgUrl }}" >
         </ion-item>
+        <ion-item ion-col col-6 no-padding>
+          <ion-input type="" name="captcha" formControlName="captcha"
+            clearInput="true" placeholder="Escribe el texto"></ion-input>
+        </ion-item>
+        <!-- Validacion captcha -->
+        <ng-container *ngFor="let validation of validation_messages.captcha" ion-col col-12>
+          <ion-item  *ngIf="registroForm.get('captcha').hasError(validation.type) && (registroForm.get('captcha').dirty || registroForm.get('captcha').touched)">
+            <p color="danger" ion-text>{{ validation.message }}</p>
+          </ion-item>
+        </ng-container>
+
+
       </ion-list>
     </ion-row>
+    <!-- <img src="{{ imgUrl }}" > -->
     <ion-row justify-content-center>
       <small >
         <p no-margin margin-top>Al dar click en registrarse acepta nuestros</p>

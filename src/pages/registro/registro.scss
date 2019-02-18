@@ -11,8 +11,12 @@ page-registro {
   }
 
 .inputc{
-
     margin-bottom: 0px;
     margin-top: 0px;
+  }
+
+  ion-img{
+    object-fit: cover;
+    width: 100%;
   }
 }

@@ -24,7 +24,7 @@
     </ion-row>
 
     <ion-row justify-content-center>
-      <ion-list ion-col col-12 col-sm-6 no-margin no-padding>
+      <ion-list ion-row ion-col col-12 col-sm-6 no-margin no-padding>
         <ion-item>
           <ion-label floating color="primary">
             <ion-icon name="person"></ion-icon>
@@ -44,6 +44,20 @@
             Escribe tu e-mail (nombre@dominio.com)
           </p>
         </ion-item>
+        <!-- captcha -->
+        <ion-item ion-col col-6 >
+          <img class="" src="{{ imgUrl }}" >
+        </ion-item>
+        <ion-item ion-col col-6 no-padding>
+          <ion-input type="" name="captcha" formControlName="captcha"
+            clearInput="true" placeholder="Escribe el texto"></ion-input>
+        </ion-item>
+        <!-- Validacion captcha -->
+        <ng-container *ngFor="let validation of validation_messages.captcha" ion-col col-12>
+          <ion-item  *ngIf="recuperarForm.get('captcha').hasError(validation.type) && (recuperarForm.get('captcha').dirty || recuperarForm.get('captcha').touched)">
+            <p color="danger" ion-text>{{ validation.message }}</p>
+          </ion-item>
+        </ng-container>
       </ion-list>
     </ion-row>
     <!-- boton -->

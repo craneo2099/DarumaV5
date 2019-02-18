@@ -21,7 +21,7 @@ export class InicioLoginPage {
   private datosLogin: loginInt;
   public token: string;
   keyboard: Keyboard;
-  minLength = 3;
+  minLength = 5;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -47,7 +47,7 @@ export class InicioLoginPage {
   logForm(){
     //console.log(this.loginForm.value);
     //console.log(this.loginForm.value.email);
-    if (this.loginForm.value.email == "" || this.loginForm.value.password == "") {
+    if (this.loginForm.get('email').hasError('required') || this.loginForm.get('password').hasError('required')) {
       console.log("campo nulo");
       let error="Error!"
       let texto="Escribe tu Usuario (e-mail) y/o Password";
@@ -66,8 +66,9 @@ export class InicioLoginPage {
             if (data["response"]==false) {
               console.log("datos Incorrectos");
 
-              let error="Error!";
-              this.doAlert(error, data["message"])
+              let error="Error!!!";
+              // this.doAlert(error, data["message"])
+              this.doAlert(error, "Usuario o contrseña incorrecto")
             } else {
 
               this.storage.set('tokenS', data["result"]);
