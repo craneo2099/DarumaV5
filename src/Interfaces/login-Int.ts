@@ -1,5 +1,6 @@
 export interface loginInt {
 
   usuario : string,
-  pass: string;
+  pass: string,
+  zona: any;
 }

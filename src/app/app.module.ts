@@ -26,6 +26,7 @@ import { HttpModule } from '@angular/http'
 
 import { IonicStorageModule } from '@ionic/storage';
 import { PasswordValidatorProvider } from '../providers/password-validator/password-validator';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { PasswordValidatorProvider } from '../providers/password-validator/passw
     SplashScreen,
     Camera,
     QRScanner,
+    DatePipe,
     DarumaServiceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PasswordValidatorProvider

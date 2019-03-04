@@ -5,8 +5,6 @@ import { InicioLoginPage } from '../inicio-login/inicio-login';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
-
-
 @IonicPage()
 @Component({
   selector: 'page-registro',
@@ -94,10 +92,22 @@ export class RegistroPage {
           this.ds.doRegistrarUsuario(dataRegistro,this.tokenR)
           .subscribe(res =>{
             console.log("registroRes", res);
-            this.doAlertConfirm("Exito!!",res["message"])
-            console.log("Registrado!!");
+            if (res["response"] == true) {
+              this.doAlertConfirm("Exito!",res["message"])
+              console.log("Registrado!!");
+            }
+            else if (res["message"] == "El usuario no es humano" && res["response"] == false /*&& res["result"] == 3*/){
+              this.doAlert("Alerta!","Verifica el Texto")
+              console.log("Error Captcha");
+            }
+            else {
+              this.doAlertConfirm("Error!!!",res["message"])
+              console.log("Usuario ya registrado");
+            }
+
           }, error => {
             console.log("error al registrar", error);
+            //personalizar mensaje de error
             this.doAlert("Error!!!","Captcha incorrecto")
           })
         } else {

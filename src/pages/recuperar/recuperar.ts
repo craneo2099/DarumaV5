@@ -54,8 +54,12 @@ export class RecuperarPage {
       }
       else {
         console.log("Entroooo");
+        let infoCaptcha = {
+          token: this.tokenR,
+          word: this.recuperarForm.value.captcha
+        }
         // requerirPass
-        this.ds.requerirPass(this.recuperarForm.value.correo)
+        this.ds.requerirPass(this.recuperarForm.value.correo, infoCaptcha)
         .subscribe(res2 =>{
           console.log("res2", res2);
           this.doAlertConfirm("Info","Se ha enviado el correo, Sigue los pasos para reestablecer tu contraseña")
@@ -103,7 +107,7 @@ export class RecuperarPage {
         {
         text: 'Ok',
         handler: () => {
-          console.log('Ok clicked');
+          //console.log('Ok clicked');
           this.navCtrl.setRoot(InicioLoginPage);
         }
       }]

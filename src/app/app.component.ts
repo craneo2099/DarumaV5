@@ -5,10 +5,9 @@ import { InicioLoginPage } from '../pages/inicio-login/inicio-login';
 import { DarumasGralPage } from './../pages/darumas-gral/darumas-gral';
 
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, App, Keyboard } from 'ionic-angular';
+import { Platform, Nav, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 
 @Component({
   templateUrl: 'app.html'
@@ -22,8 +21,7 @@ export class MyApp {
   constructor(platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    public app: App,
-    keyboard: Keyboard
+    public app: App
     ) {
     this.rootPage = InicioLoginPage;
     this.pages = [
@@ -48,19 +46,11 @@ export class MyApp {
   goToPage(page){
     //console.log(page);
     if (page == InicioLoginPage) {
-
-      // Quitar API token
-
-      //const root = this.app.getRootNav();
-      //console.log("yeahh", this.app.getRootNav());
-      //root.popToRoot();
-
+      // Nota: Quita token siempre al cargar inicioPage
       this.nav.setRoot(page);
     }else{
       this.nav.setRoot(page);
     }
-
-
   }
 }
 

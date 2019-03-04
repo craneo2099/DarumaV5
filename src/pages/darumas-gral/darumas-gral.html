@@ -32,11 +32,19 @@
   <!-- Lista de darumas -->
   <ion-list>
     <ion-item (click)="goToDetalle(daruma.qrcode, toki)" *ngFor="let daruma of darumas">
-      <ion-thumbnail item-start>
+      <ion-thumbnail item-start *ngIf="daruma.estado == 6">
         <img src="../../assets/imgs/DarumaUnOjo.png ">
       </ion-thumbnail>
-      <h2>{{daruma.descripcion}} 1</h2>
-      <p>{{daruma.fechaInicio }} • {{daruma.estado}}</p>
+      <ion-thumbnail style="opacity: 0.5;" item-start *ngIf="daruma.estado == 8">
+        <img src="../../assets/imgs/DarumaDosOjo.png ">
+      </ion-thumbnail>
+      <h2>{{daruma.descripcion}}</h2>
+      <p>{{daruma.fechaInicio | date: 'dd/MM/yyyy' }} • {{daruma.estado}}</p>
+      <p style="color: black" *ngIf="daruma.estado == 6" >Activo</p>
+      <p *ngIf="daruma.estado == 8" >
+        <span>{{daruma.fechaCompletado | date: 'dd/MM/yyyy' }}</span>
+        Completado
+      </p>
       <button ion-button clear item-end>Ver</button>
     </ion-item>
 

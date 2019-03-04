@@ -23,14 +23,11 @@
 @font-face {
   font-family: fuenteMenu;
   src: url(../assets/fonts/poppins/Poppins-Regular.ttf);
-
 }
 
 .colorFondo{
   background-color: map-get($colors, fondo);
 }
-
-
 
 .imgRed {
   margin:  auto;
@@ -47,7 +44,7 @@
 /*Cuando la pantalla es mas de 576 submit*/
 @media only screen and (min-width: 576px) {
   .noMostrarG {
-      display: none;
+    display: none;
   }
   .centrarG{
     margin:  auto;

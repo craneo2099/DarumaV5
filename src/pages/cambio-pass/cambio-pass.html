@@ -8,7 +8,8 @@
 
 
 <ion-content class="colorFondo" padding-vertical>
-  <form ion-grid fixed no-padding>
+  <form ion-grid fixed no-padding [formGroup]="cambioPassForm"
+  (ngSubmit)="cambiarPass()">
     <ion-row justify-content-center padding-bottom>
       <img class="imgRed2 noMostrarG"
         src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
@@ -24,30 +25,61 @@
 
     <ion-row justify-content-center>
       <ion-list ion-col col-12 col-sm-6 no-margin no-padding>
+        <!-- vieja -->
         <ion-item>
           <ion-label floating color="primary">
             <ion-icon name="key"></ion-icon>
             Contrase&ntilde;a
             <span ion-text color="gris">(Actual)</span>
           </ion-label>
-          <ion-input type="password" name="contraseñaA" clearInput="true"></ion-input>
+          <ion-input type="password" name="passwordO" clearInput="true"
+          formControlName="passwordO" required></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label floating color="primary">
-            <ion-icon name="key"></ion-icon>
-            Nueva Contrase&ntilde;a
-          </ion-label>
-          <ion-input type="password" name="contraseñaN1" clearInput="true"></ion-input>
-        </ion-item>
-
-        <ion-item>
+        <!-- Validacion PassO -->
+        <ng-container *ngFor="let validation of validation_messages.passwordO" ion-col col-12>
+          <ion-item  *ngIf="cambioPassForm.get('passwordO').hasError(validation.type) && (cambioPassForm.get('passwordO').dirty || cambioPassForm.get('passwordO').touched)">
+            <p color="danger" ion-text>{{ validation.message }}</p>
+          </ion-item>
+        </ng-container>
+        <div formGroupName="matching_passwords">
+          <!-- PassN -->
+          <ion-item>
             <ion-label floating color="primary">
               <ion-icon name="key"></ion-icon>
               Nueva Contrase&ntilde;a
-              <span ion-text color="gris">(Repite)</span>
             </ion-label>
-            <ion-input type="password" name="contraseñaN2" clearInput="true"></ion-input>
+            <ion-input type="password" name="passwordN" clearInput="true"
+            formControlName="passwordN" required></ion-input>
           </ion-item>
+          <!-- Validacion PassN -->
+          <ng-container *ngFor="let validation of validation_messages.passwordN" ion-col col-12>
+            <ion-item  *ngIf="cambioPassForm.get('matching_passwords').get('passwordN').hasError(validation.type) && (cambioPassForm.get('matching_passwords').get('passwordN').dirty || cambioPassForm.get('matching_passwords').get('passwordN').touched)">
+              <p color="danger" ion-text>{{ validation.message }}</p>
+            </ion-item>
+          </ng-container>
+          <!-- PassNC Confirma -->
+          <ion-item>
+            <ion-label floating color="primary">
+              <ion-icon name="key"></ion-icon>
+              Nueva Contrase&ntilde;a
+              <span ion-text color="gris">(Confirma)</span>
+            </ion-label>
+            <ion-input type="password" name="passwordNC" clearInput="true"
+            formControlName="passwordNC" required></ion-input>
+          </ion-item>
+          <ng-container *ngFor="let validation of validation_messages.passwordNC" ion-col col-12>
+            <ion-item  *ngIf="cambioPassForm.get('matching_passwords').get('passwordNC').hasError(validation.type) && (cambioPassForm.get('matching_passwords').get('passwordNC').dirty || cambioPassForm.get('matching_passwords').get('passwordNC').touched)">
+              <p color="danger" ion-text>{{ validation.message }}</p>
+            </ion-item>
+          </ng-container>
+
+          <ng-container *ngFor="let validation of validation_messages.matching_passwords" ion-col col-12 >
+            <ion-item  *ngIf="cambioPassForm.get('matching_passwords').hasError(validation.type) && (cambioPassForm.get('matching_passwords').get('passwordNC').dirty || cambioPassForm.get('matching_passwords').get('passwordNC').touched)">
+              <p color="danger" ion-text>{{ validation.message }}</p>
+            </ion-item>
+          </ng-container>
+        </div>
+
 
       </ion-list>
     </ion-row>
@@ -55,7 +87,7 @@
     <ion-row justify-content-center padding-horizontal padding-top>
       <div ion-col col-12  col-sm-6 class="colorFondo">
         <button type="submit" color="verde" ion-button
-          block full icon-left (click)="cambiarPass()" class="sombra">
+          block full icon-left class="sombra">
             <ion-icon name="create"></ion-icon>
             Cambiar
         </button>
@@ -63,6 +95,7 @@
     </ion-row>
   </form>
 </ion-content>
+
 <!-- Footer -->
 <!-- <ion-footer>
   <ion-grid no-padding>

@@ -7,7 +7,7 @@
   "proxies": [
   	{
 	  	"path": "/darumaUrl",
-	  	"proxyUrl": "http://koinobori-artesanias.com/darumas/public/"
+	  	"proxyUrl": "https://koinobori-artesanias.com/darumas/public/"
   	}
   ]
 }

@@ -34,28 +34,28 @@ ionViewWillEnter(){
     .then((status: QRScannerStatus) => {
       if (status.authorized) {
         // camera permission was granted
-        console.log('Camera Permission Given');
+        // console.log('Camera Permission Given');
 
         // start scanning
         this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
-          console.log("Info QR: ", text);
-          console.log("PROCESO");
+          // console.log("Info QR: ", text);
+          // console.log("PROCESO");
           //DarumasWS/asignar
           this.ds.getToken().then((token)=>{
             this.ds.isQrCodeRegistrado(text, token)
             .subscribe(res =>{
-              console.log("resExiste", res);
+              // console.log("resExiste", res);
               if(res["result"] == true){
                 let mensaje = "Codigo Aceptado"
-                console.log("existe");
+                // console.log("existe");
 
                 /////////////Inicio////////////////////////
                 this.ds.isQrCodeAsignado(text, token)
                 .subscribe(res2 =>{
-                  console.log("res2", res2);
+                  // console.log("res2", res2);
                   if(res2["result"] == false){
                 /////////////Fin/////////////////////////
-                    console.log("no esta usado");
+                    // console.log("no esta usado");
                     //se almacena
                     let nuevoDaruma = {
                       "qrCode": text,
@@ -72,6 +72,8 @@ ionViewWillEnter(){
                     // quitar comentario
                     this.navCtrl.setRoot(DarumasGralPage)
                   }
+                }, error => {
+                  console.log("Error isQrCodeAsignado",error);
                 })
                 ////////////////Fin////////////////////////
 
@@ -82,17 +84,15 @@ ionViewWillEnter(){
                 this.navCtrl.setRoot(DarumasGralPage)
               }
             }, error => {
-              console.log("errooor",error);
+              console.log("Error isQrCodeRegistrado",error);
             })
-          })
-
-
+          }).catch((e: any) => console.log('Error getToken', e));
 
         });//termina
         // show camera preview
         this.qrScanner.show();
-        console.log("Info 2 QR: ", this.qrScanner.show());
-        console.log("PREVISTA");
+        // console.log("Info 2 QR: ", this.qrScanner.show());
+        // console.log("PREVISTA");
 
         // wait for user to scan something, then the observable callback will be called
 
@@ -111,7 +111,6 @@ ionViewWillEnter(){
 }
 
 closeModal() {
-  //this.navCtrl.pop();
   this.viewController.dismiss();
 }
 

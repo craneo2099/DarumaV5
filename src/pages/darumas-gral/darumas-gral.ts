@@ -3,14 +3,7 @@ import { AddDarumaQrPage } from './../add-daruma-qr/add-daruma-qr';
 import { DetalleDarumaPage } from './../detalle-daruma/detalle-daruma';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the DarumasGralPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 
 @IonicPage()
@@ -27,7 +20,8 @@ export class DarumasGralPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public ds: DarumaServiceProvider) {
+    public ds: DarumaServiceProvider,
+    public menuCtrl: MenuController) {
     this.darumas = [];
   }
 
@@ -36,49 +30,61 @@ export class DarumasGralPage {
     let daruma = {
       "daruma" : {"qrcode" : qrcode}
     }
-    console.log("darumaMorph", daruma);
+    //console.log("darumaMorph", daruma);
 
     this.ds.getDarumasDetalle(daruma, token)
     .subscribe(detalle =>{
       detalle["result"].forEach(element => {
-        // console.log("detalle1", element);
+        console.log("detalle1", element);
         // console.log("detalle2", ...element["descripcion"]);
         // console.log("detalle3", element["nombre"]);
         this.navCtrl.push(DetalleDarumaPage, {
           descripcion: element["descripcion"],
-          nombre: element["nombre"],
-          fechaIni: element["ultimaEdicion"]
+          nombre:      element["nombre"],
+          fechaIni:    element["fechaInicio"],
+          fechaFin:    element["fechaCompletado"],
+          estado:      element["estado"],
+          qrCode:      element["qrcode"],
+          token:       this.toki
         });
-
       })
+    }, error => {
+      console.log("Error getDarumasDetalle", error);
     })
-
   }
 
   goToScanQr(){
     this.navCtrl.push(AddDarumaQrPage);
   }
 
-  ionViewDidLoad() {
+  cargaDarumasLst(){
     // mandar llamar servicio para traer darumas
     this.ds.getToken().then((token)=>{
       this.toki = token
       this.ds.getDarumas(token).subscribe(daruma =>{
-        //console.log("darEnGetDAr", daruma );
+        console.log("EntraGetDarumas", daruma );
+        // if()
         daruma["result"].forEach(element => {
           //console.log("qr ",element["qrcode"]," estado ",element["estado"]);
           this.darumas.push(element)
           //console.log("Darumalst", element);
-
         });
+      }, error => {
+        console.log("Error getDarumas", error);
       })
-    })
+    }).catch((e: any) => console.log('Error getToken', e));
+  }
 
-    // .subscribe(data => {
-    //   console.log("En servicio",data)
-    // })
-    // console.log(this.ds.getDarumas());
-    //console.log('ionViewDidLoad DarumasGralPage');
+  ionViewWillEnter(){
+   this.cargaDarumasLst();
+   console.log("Menu ",this.menuCtrl.isEnabled());
+   if(this.menuCtrl.isEnabled() == false){
+     this.menuCtrl.enable(true);
+   }
+
+  }
+
+  ionViewDidLoad() {
   }
 
 }
