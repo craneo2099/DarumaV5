@@ -1,10 +1,10 @@
 import { PasswordValidatorProvider } from './../../providers/password-validator/password-validator';
 import { DarumaServiceProvider } from './../../providers/daruma-service/daruma-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Keyboard } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { InicioLoginPage } from '../inicio-login/inicio-login';
-
+import * as CryptoJS from 'crypto-js';
 
 @IonicPage()
 @Component({
@@ -21,6 +21,7 @@ export class CambioPassPage {
   public navParams: NavParams,
   public ds: DarumaServiceProvider,
   public alertCtrl: AlertController,
+  public keyboard: Keyboard,
   public formBuilder: FormBuilder
   ) {
     this.token =     navParams.get("token");
@@ -67,10 +68,13 @@ export class CambioPassPage {
       else {
         if (this.cambioPassForm.value.matching_passwords.passwordN == this.cambioPassForm.value.matching_passwords.passwordNC) {
           // console.log(this.usuario, this.token);
+          let sha256O = CryptoJS.SHA256(this.cambioPassForm.value.passwordO)
+          let sha256N = CryptoJS.SHA256(this.cambioPassForm.value.matching_passwords.passwordN)
+
           let datosCambioPass = {
             "usuario" : this.usuario,
-            "oldPass" : this.cambioPassForm.value.passwordO,
-            "newPass" : this.cambioPassForm.value.matching_passwords.passwordN
+            "oldPass" : sha256O.toString(CryptoJS.enc.Hex),
+            "newPass" : sha256N.toString(CryptoJS.enc.Hex)
           }
           this.ds.actualizarPass(datosCambioPass, this.token)
           .subscribe(res =>{

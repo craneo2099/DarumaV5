@@ -18,7 +18,7 @@ export class MyApp {
   public pages: Array<{titulo: string, color: string,
     componente: any, icon: string}>
 
-  constructor(platform: Platform,
+  constructor(public platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     public app: App
@@ -36,8 +36,12 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      if(this.platform.is('android')) {
+        statusBar.styleBlackTranslucent();
+      } else {
+        statusBar.styleDefault();
+      }
 
-      statusBar.styleDefault();
       splashScreen.hide();
 
     });
@@ -45,11 +49,11 @@ export class MyApp {
 
   goToPage(page){
     //console.log(page);
-    if (page == InicioLoginPage) {
+    if (page == InicioLoginPage || page == DarumasGralPage) {
       // Nota: Quita token siempre al cargar inicioPage
       this.nav.setRoot(page);
     }else{
-      this.nav.setRoot(page);
+      this.nav.push(page);
     }
   }
 }

@@ -2,8 +2,7 @@ import { InicioLoginPage } from './../inicio-login/inicio-login';
 import { DarumaServiceProvider } from './../../providers/daruma-service/daruma-service';
 import { CambioPassPage } from './../cambio-pass/cambio-pass';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, AlertController, Keyboard } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -16,6 +15,7 @@ export class AjustesPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public ds: DarumaServiceProvider,
+    public keyboard: Keyboard,
     public alertCtrl: AlertController) {
   }
 

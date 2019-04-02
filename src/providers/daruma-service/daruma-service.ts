@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
+
 @Injectable()
 export class DarumaServiceProvider {
   public darumaUrl: string;
@@ -34,12 +35,15 @@ export class DarumaServiceProvider {
         "Authorization": ""
       })
     };
-    this.respuesta = this.http.post(
-      this.darumaUrl + "loginApp/login" ,
-      this.datosLogin, httpOptions)
+
   return this.respuesta = this.http.post(
     this.darumaUrl + "loginApp/login" ,
     this.datosLogin, httpOptions)
+    // .retry(3)
+    // .catch(err =>{
+    //   console.log("errServ",err);
+    //   return Observable.of(err);
+    // })
   }
 
   getToken(){

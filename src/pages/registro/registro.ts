@@ -2,8 +2,10 @@ import { PasswordValidatorProvider } from './../../providers/password-validator/
 import { DarumaServiceProvider } from './../../providers/daruma-service/daruma-service';
 import { Component } from '@angular/core';
 import { InicioLoginPage } from '../inicio-login/inicio-login';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Keyboard } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import * as CryptoJS from 'crypto-js';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @IonicPage()
 @Component({
@@ -20,7 +22,9 @@ export class RegistroPage {
     public navParams: NavParams,
     public ds: DarumaServiceProvider,
     public alertCtrl: AlertController,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public keyboard: Keyboard,
+    private iab: InAppBrowser
     ) {
       //constructor
      this.matching_passwords_group = new FormGroup({
@@ -58,57 +62,79 @@ export class RegistroPage {
     this.registroForm.get('captcha').hasError('required')   ){
       console.log("Completa los campos!!!");
       var texto = "Completa los campos!!!"
-      this.doAlert("Error!", texto)
+      this.doAlert("Error!", texto, "")
     } else {
       if (this.registroForm.get('correo').errors &&
         this.registroForm.get('correo').dirty &&
         this.registroForm.get('correo').hasError('pattern')) {
         //  console.log("No entra");
-         this.doAlert("Error!!!","Escribe el correo correctamente")
+         this.doAlert("Error!!!","Escribe el correo correctamente", "")
       }
       else if (this.registroForm.get('matching_passwords').get('password').hasError('minlength')) {
-        this.doAlert("Error!!!", "Contrase\u00F1a: "+this.validation_messages.password[1]["message"])
+        this.doAlert("Error!!!", "Contrase\u00F1a: "+this.validation_messages.password[1]["message"],"")
       }
       else if (this.registroForm.get('matching_passwords').get('password').hasError('maxlength')) {
-        this.doAlert("Error!!!", "Contrase\u00F1a: "+this.validation_messages.password[2]["message"])
+        this.doAlert("Error!!!", "Contrase\u00F1a: "+this.validation_messages.password[2]["message"],"")
       }
       else if (this.registroForm.get('matching_passwords').hasError("areEqual")) {
-        this.doAlert("Error!!!", "Contrase\u00F1a: "+this.validation_messages.matching_passwords[0]["message"])
+        this.doAlert("Error!!!", "Contrase\u00F1a: "+this.validation_messages.matching_passwords[0]["message"],"")
       }
       else if (this.registroForm.get('captcha').hasError('minlength')){
-        this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[1]["message"])
+        this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[1]["message"],"")
       }
       else if (this.registroForm.get('captcha').hasError('maxlength')){
-        this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[2]["message"])
+        this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[2]["message"],"")
       }
       else {
         if (this.registroForm.value.matching_passwords.password == this.registroForm.value.matching_passwords.passwordC) {
+          let sha256 = CryptoJS.SHA256(this.registroForm.value.matching_passwords.password)
+          //sha256.toString(CryptoJS.enc.Base64)
           let dataRegistro = {
             "usuario" : this.registroForm.value.correo,
             "correo"  : this.registroForm.value.correo,
             "word"    : this.registroForm.value.captcha,
-            "pass"    : this.registroForm.value.matching_passwords.password
+            "pass"    : sha256.toString(CryptoJS.enc.Hex)
           }
           this.ds.doRegistrarUsuario(dataRegistro,this.tokenR)
           .subscribe(res =>{
             console.log("registroRes", res);
             if (res["response"] == true) {
-              this.doAlertConfirm("Exito!",res["message"])
+              this.doAlertConfirm("Exito!",res["message"],"")
               console.log("Registrado!!");
             }
-            else if (res["message"] == "El usuario no es humano" && res["response"] == false /*&& res["result"] == 3*/){
-              this.doAlert("Alerta!","Verifica el Texto")
+            else if (res["result"] == "NO_HUMANO" && res["response"] == false){
+              this.doAlert("Alerta!","Verifica el Texto","Que sea el mismo de la imagen")
               console.log("Error Captcha");
             }
-            else {
-              this.doAlertConfirm("Error!!!",res["message"])
+            else if (res["result"] == "MAIL_EXISTE" && res["response"] == false){
+              this.doAlert("Alerta!","Correo ya registrado","")
+              console.log("Correo ya registrado");
+            }
+            else if (res["result"] == "USR_EXISTE" && res["response"] == false){
+              this.doAlert("Alerta!","Usuario ya registrado","")
               console.log("Usuario ya registrado");
+            }
+            else if (res["result"] == "SQL_ERR" && res["response"] == false){
+              this.doAlert("Alerta!","Error al registrar","Clave: 4")
+              console.log("Error al registrar");
+            }
+            else if (res["result"] == "SYS_ERR" && res["response"] == false){
+              this.doAlert("Alerta!","Error al registrar","Clave: SE")
+              console.log("Error al registrar SE");
+            }
+            else if (res["result"] == null && res["response"] == false){
+              this.doAlert("Alerta!","Error al registrar", "")
+              console.log("Error al registrar");
+            }
+            else {
+              this.doAlertConfirm("Error!!!","Error al registrar","Clave: GE")
+              console.log("Error al registrar GE");
             }
 
           }, error => {
             console.log("error al registrar", error);
             //personalizar mensaje de error
-            this.doAlert("Error!!!","Captcha incorrecto")
+            this.doAlert("Error!!!","Captcha incorrecto","Clave: DF")
           })
         } else {
           console.log("pass diferentes");
@@ -151,20 +177,22 @@ export class RegistroPage {
     ]
   };
 
-  doAlert(titulo, texto) {
+  doAlert(titulo, texto, mensaje) {
     let alert = this.alertCtrl.create({
       title: titulo,
       subTitle: texto,
+      message: mensaje,
       buttons: ['Ok']
     });
 
     alert.present();
   }
 
-  doAlertConfirm(titulo, texto) {
+  doAlertConfirm(titulo, texto, mensaje) {
     let alert = this.alertCtrl.create({
       title: titulo,
       subTitle: texto,
+      message: mensaje,
       buttons: [
         {
         text: 'Ok',
@@ -176,9 +204,26 @@ export class RegistroPage {
 
     alert.present();
   }
+
+  abreTerminos(){
+    const browser = this.iab.create('https://koinobori-artesanias.com/terminos.html', '_blank');
+
+    //browser.executeScript(...);
+
+    // browser.insertCSS(...);
+    browser.on('loadstop').subscribe(event => {
+      browser.insertCSS({ code: "body{color: red;" });
+    });
+
+    browser.close();
+  }
+
+  ionViewWillEnter(){
+    this.obtnerCaptchaTs();
+  }
+
   ionViewDidLoad() {
     //console.log('ionViewDidLoad RegistroPage');
-    this.obtnerCaptchaTs();
   }
 
 }

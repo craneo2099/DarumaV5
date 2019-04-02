@@ -10,7 +10,7 @@
 <ion-content class="colorFondo" padding-horizontal>
   <ion-row class="paddingVerticalM centrarG"  align-items-end>
     <p ion-text color="rosa" padding-left no-margin>
-        <b>Bienvenido: </b><span ion-text color="dark">Usuario</span>
+        <b>Bienvenid&#64;: </b><span ion-text color="dark">{{ usuario }}</span>
     </p>
   </ion-row>
   <ion-row justify-content-center padding-horizontal >
@@ -31,6 +31,11 @@
   </ion-row>
   <!-- Lista de darumas -->
   <ion-list>
+    <ion-row justify-content-center padding-horizontal
+      *ngIf="noDarumaFlag == true">
+          <h3 ion-text color="azul">¡A&uacute;n no tienes Darumas!</h3>
+    </ion-row>
+
     <ion-item (click)="goToDetalle(daruma.qrcode, toki)" *ngFor="let daruma of darumas">
       <ion-thumbnail item-start *ngIf="daruma.estado == 6">
         <img src="../../assets/imgs/DarumaUnOjo.png ">
@@ -39,7 +44,7 @@
         <img src="../../assets/imgs/DarumaDosOjo.png ">
       </ion-thumbnail>
       <h2>{{daruma.descripcion}}</h2>
-      <p>{{daruma.fechaInicio | date: 'dd/MM/yyyy' }} • {{daruma.estado}}</p>
+      <p>{{daruma.fechaInicio | date: 'dd/MM/yyyy' }}</p>
       <p style="color: black" *ngIf="daruma.estado == 6" >Activo</p>
       <p *ngIf="daruma.estado == 8" >
         <span>{{daruma.fechaCompletado | date: 'dd/MM/yyyy' }}</span>
@@ -47,8 +52,6 @@
       </p>
       <button ion-button clear item-end>Ver</button>
     </ion-item>
-
-
   </ion-list>
 
 </ion-content>
@@ -58,7 +61,7 @@
   <ion-grid no-padding>
     <ion-row no-padding>
       <div ion-col col-12 text-center no-padding>
-        <p>Powered by <strong>Devstar Novatech.</strong></p>
+        <small>Powered by <strong>Devstar Novatech.</strong></small>
       </div>
     </ion-row>
   </ion-grid>

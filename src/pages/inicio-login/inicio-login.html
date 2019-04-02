@@ -57,12 +57,6 @@
           <p color="danger" ion-text *ngIf="loginForm.get('password').hasError('required')">
             Campo requerido
           </p>
-          <!-- <p color="danger" ion-text *ngIf="loginForm.get('password').hasError('minLength')">
-            Yeahhh
-          </p> -->
-          <!-- <p color="danger" ion-text *ngIf="loginForm.get('password').hasError('minlength') ">
-            Minimo 4 caracteres
-          </p> -->
         </ion-item>
       </ion-list>
     </ion-row>
@@ -97,12 +91,12 @@
   </form>
 </ion-content>
 <!-- footer -->
-<!-- <ion-footer class="asd">
+<ion-footer [hidden]="keyboard.isOpen()">
   <ion-grid no-padding>
     <ion-row no-padding>
       <div ion-col col-12 text-center no-padding>
-        <p>Powered by <strong>Devstar Novatech.</strong></p>
+        <small>Powered by <strong>Devstar Novatech.</strong></small>
       </div>
     </ion-row>
   </ion-grid>
-</ion-footer> -->
+</ion-footer>

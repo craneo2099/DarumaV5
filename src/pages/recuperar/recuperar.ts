@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { InicioLoginPage } from '../inicio-login/inicio-login';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Keyboard } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -19,6 +19,7 @@ export class RecuperarPage {
     public navParams: NavParams,
     public ds: DarumaServiceProvider,
     public alertCtrl: AlertController,
+    public keyboard : Keyboard,
     public formBuilder: FormBuilder
     ) {
       this.recuperarForm = this.formBuilder.group({
@@ -115,10 +116,12 @@ export class RecuperarPage {
 
     alert.present();
   }
+  ionViewWillEnter(){
+    this.obtnerCaptchaTs();
+  }
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad RecuperarPage');
-    this.obtnerCaptchaTs();
   }
 
 }

@@ -1,3 +1,4 @@
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { CambioPassPage } from './../pages/cambio-pass/cambio-pass';
 import { AjustesPage } from './../pages/ajustes/ajustes';
 import { RecuperarPage } from '../pages/recuperar/recuperar';
@@ -27,6 +28,9 @@ import { HttpModule } from '@angular/http'
 import { IonicStorageModule } from '@ionic/storage';
 import { PasswordValidatorProvider } from '../providers/password-validator/password-validator';
 import { DatePipe } from '@angular/common';
+// import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+
 
 @NgModule({
   declarations: [
@@ -73,6 +77,8 @@ import { DatePipe } from '@angular/common';
     Camera,
     QRScanner,
     DatePipe,
+    InAppBrowser,
+    LocalNotifications,
     DarumaServiceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PasswordValidatorProvider
