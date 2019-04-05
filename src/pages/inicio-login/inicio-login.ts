@@ -7,7 +7,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 //import { FormularioDarumaPage } from './../formulario-daruma/formulario-daruma';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController,
-  MenuController, LoadingController, Platform, Keyboard } from 'ionic-angular';
+  MenuController, LoadingController, Keyboard } from 'ionic-angular';
 import { RegistroPage } from '../registro/registro';
 import { RecuperarPage } from '../recuperar/recuperar';
 import { DarumasGralPage } from '../darumas-gral/darumas-gral';
@@ -36,7 +36,6 @@ export class InicioLoginPage {
     public storage: Storage,
     public datePipe: DatePipe,
     public loadingCtrl: LoadingController,
-    private plt: Platform,
     public keyboard: Keyboard,
     public menuCtrl: MenuController
     ) {

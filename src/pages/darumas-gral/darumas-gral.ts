@@ -168,7 +168,7 @@ export class DarumasGralPage {
   alertOfNotification(){
     this.plt.ready().then (() =>{
       this.localNotifications.on('trigger').subscribe (ras =>{
-        let user = ras.data ? ras.data.myData : '';
+        //let user = ras.data ? ras.data.myData : '';
         // console.log("msgOC",user);
         this.doAlert(ras.title, "", ras.text);
       }, error => {
