@@ -160,7 +160,6 @@ export class DarumasGralPage {
       title: titulo,
       subTitle: sub,
       message: mensaje,
-      enableBackdropDismiss: false,
       buttons: ['Ok']
     });
     alert.present();

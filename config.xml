@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.devstar-novatech.darumakoinobori" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.devstarnovatech.Darumakoinobori" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Daruma Koinobori</name>
     <description>Daruma Virtual Koinobori Artesanias.</description>
     <author email="devstar.novatech@gmail.com" href="http://devstar-novatech.com/">Devstar Novatech</author>
@@ -84,7 +84,6 @@
     <plugin name="cordova-plugin-qrscanner" spec="2.6.0" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <plugin name="cordova-sqlite-storage" spec="2.6.0" />
-    <allow-navigation href="http://192.168.0.14:8100" sessionid="bf2b7699" />
     <plugin name="cordova-plugin-inappbrowser" spec="3.0.0" />
     <plugin name="cordova-plugin-local-notification" spec="0.9.0-beta.2" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.1.3" />

@@ -103,7 +103,6 @@ export class RecuperarPage {
     let alert = this.alertCtrl.create({
       title: titulo,
       subTitle: texto,
-      enableBackdropDismiss: false,
       buttons: ['Ok']
     });
 
@@ -114,7 +113,6 @@ export class RecuperarPage {
     let alert = this.alertCtrl.create({
       title: titulo,
       subTitle: texto,
-      enableBackdropDismiss: false,
       buttons: [
         {
         text: 'Ok',

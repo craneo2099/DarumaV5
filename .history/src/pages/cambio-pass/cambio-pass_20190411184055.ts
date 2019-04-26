@@ -129,7 +129,6 @@ export class CambioPassPage {
       title: titulo,
       subTitle: sub,
       message: texto,
-      enableBackdropDismiss: false,
       buttons: ['Ok']
     });
 
@@ -141,7 +140,6 @@ export class CambioPassPage {
       title: titulo,
       subTitle: sub,
       message: texto,
-      enableBackdropDismiss: false,
       buttons: [
         {
         text: 'Ok',

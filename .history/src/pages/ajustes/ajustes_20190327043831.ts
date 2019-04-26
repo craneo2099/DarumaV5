@@ -52,7 +52,7 @@ export class AjustesPage {
       title: titulo,
       subTitle: texto,
       message: mensaje,
-      enableBackdropDismiss: false,
+      // enableBackdropDismiss: false,
       buttons: [
         {
           text: 'Regresar',

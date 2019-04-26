@@ -194,7 +194,6 @@ export class RegistroPage {
       title: titulo,
       subTitle: texto,
       message: mensaje,
-      enableBackdropDismiss: false,
       buttons: [
         {
         text: 'Ok',

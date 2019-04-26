@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { InicioLoginPage } from '../inicio-login/inicio-login';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Keyboard, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Keyboard } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -14,14 +14,12 @@ export class RecuperarPage {
   public recuperarForm: FormGroup;
   public imgUrl;
   public tokenR;
-  public loader: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public ds: DarumaServiceProvider,
     public alertCtrl: AlertController,
     public keyboard : Keyboard,
-    public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder
     ) {
       this.recuperarForm = this.formBuilder.group({
@@ -36,28 +34,23 @@ export class RecuperarPage {
   }
 
   enviarMail(){
-    this.loader = this.loadingCtrl.create();
-    this.loader.present();
     console.log("correo",this.recuperarForm.value.correo);
 
     if (this.recuperarForm.get('correo').hasError('required') ||
       this.recuperarForm.get('captcha').hasError('required')) {
-      this.loader.dismiss();
+
       this.doAlert("Error!!!","Campo requerido")
     } else {
       if (this.recuperarForm.get('correo').errors &&
         this.recuperarForm.get('correo').dirty &&
         this.recuperarForm.get('correo').hasError('pattern')) {
          console.log("No entra");
-         this.loader.dismiss();
          this.doAlert("Error!!!","Escribe el correo correctamente")
       }
       else if (this.recuperarForm.get('captcha').hasError('minlength')){
-        this.loader.dismiss();
         this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[1]["message"])
       }
       else if (this.recuperarForm.get('captcha').hasError('maxlength')){
-        this.loader.dismiss();
         this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[2]["message"])
       }
       else {
@@ -70,11 +63,9 @@ export class RecuperarPage {
         this.ds.requerirPass(this.recuperarForm.value.correo, infoCaptcha)
         .subscribe(res2 =>{
           console.log("res2", res2);
-          this.loader.dismiss();
           this.doAlertConfirm("Info","Se ha enviado el correo, Sigue los pasos para reestablecer tu contraseña")
         }, error => {
           console.log("error al registrar", error);
-          this.loader.dismiss();
           this.doAlert("Error!!!","Captcha incorrecto")
         })
       }
@@ -103,7 +94,6 @@ export class RecuperarPage {
     let alert = this.alertCtrl.create({
       title: titulo,
       subTitle: texto,
-      enableBackdropDismiss: false,
       buttons: ['Ok']
     });
 
@@ -114,7 +104,6 @@ export class RecuperarPage {
     let alert = this.alertCtrl.create({
       title: titulo,
       subTitle: texto,
-      enableBackdropDismiss: false,
       buttons: [
         {
         text: 'Ok',

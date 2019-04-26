@@ -70,11 +70,9 @@ export class RecuperarPage {
         this.ds.requerirPass(this.recuperarForm.value.correo, infoCaptcha)
         .subscribe(res2 =>{
           console.log("res2", res2);
-          this.loader.dismiss();
           this.doAlertConfirm("Info","Se ha enviado el correo, Sigue los pasos para reestablecer tu contraseña")
         }, error => {
           console.log("error al registrar", error);
-          this.loader.dismiss();
           this.doAlert("Error!!!","Captcha incorrecto")
         })
       }
@@ -103,7 +101,6 @@ export class RecuperarPage {
     let alert = this.alertCtrl.create({
       title: titulo,
       subTitle: texto,
-      enableBackdropDismiss: false,
       buttons: ['Ok']
     });
 
@@ -114,7 +111,6 @@ export class RecuperarPage {
     let alert = this.alertCtrl.create({
       title: titulo,
       subTitle: texto,
-      enableBackdropDismiss: false,
       buttons: [
         {
         text: 'Ok',
