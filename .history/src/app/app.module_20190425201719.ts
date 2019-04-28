@@ -35,17 +35,17 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 @NgModule({
   declarations: [
     MyApp
-    // ,
-    // InicioLoginPage,
-    // RegistroPage,
-    // FormularioDarumaPage,
-    // DarumasGralPage,
-    // AddDarumaQrPage,
-    // AcercaPage,
-    // DetalleDarumaPage,
-    // RecuperarPage,
-    // AjustesPage,
-    // CambioPassPage
+    ,
+    InicioLoginPage,
+    RegistroPage,
+    FormularioDarumaPage,
+    DarumasGralPage,
+    AddDarumaQrPage,
+    AcercaPage,
+    DetalleDarumaPage,
+    RecuperarPage,
+    AjustesPage,
+    CambioPassPage
   ],
   imports: [
     BrowserModule,

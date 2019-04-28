@@ -95,7 +95,7 @@ export class InicioLoginPage {
         }, error => {
           console.log("errooor",error);
           this.loader.dismiss();
-          this.doAlert("Error!!","Prueba mas tarde...");
+          this.doAlert("Error!!","Prueba mas tarde...")
         });
       }
     }
